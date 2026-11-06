@@ -40,6 +40,30 @@ python -m src.train --seed 42
 python -m src.run_seeds
 ```
 
+### En macOS / Linux (Terminal):
+
+```bash
+# 1. Clonar el repositorio y entrar
+git clone [https://github.com/Andercitoo/repro-ml-aguilar.git](https://github.com/Andercitoo/repro-ml-aguilar.git)
+cd repro-ml-aguilar
+
+# 2. Crear y activar el entorno virtual
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 3. Instalar dependencias exactas
+pip install -r requirements.txt
+
+# 4. Fijar semilla hash y preparar datos
+PYTHONHASHSEED=0 python -m src.prepare_data
+
+# 5. Ejecutar corrida determinista (semilla 42)
+PYTHONHASHSEED=0 python -m src.train --seed 42
+
+# 6. Ejecutar las 5 semillas y registrar en MLflow
+PYTHONHASHSEED=0 python -m src.run_seeds
+```
+
 ---
 
 ## 3. Resultado Esperado (Semilla 42)
