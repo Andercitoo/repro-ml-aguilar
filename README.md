@@ -113,9 +113,10 @@ Captura de las 10 corridas registradas en MLflow:
 ---
 
 ## 7. Prueba del Extraño
-- **Evaluador:** (Pendiente: Nombre y apellido de compañero de otro grupo)
-- **Issue en GitHub:** [Issue #1 - Prueba del extraño](https://github.com/Andercitoo/repro-ml-aguilar/issues)
-- **Resultado:** Reproducción exitosa verificada por un tercero independiente sobre un entorno limpio.
+- **Evaluador:** Adrian Feria Lezama (Grupo 1)
+- **Entorno:** Windows | Python 3.13.5
+- **Issue en GitHub:** [Issue #1 - Resultado de la prueba de reproducibilidad](https://github.com/Andercitoo/repro-ml-aguilar/issues/1)
+- **Resultado:** Reproducción exitosa verificada por un evaluador independiente sobre un entorno limpio. Se replicó de forma idéntica el hash del dataset procesado (`5caa212fdfd858bb9a4f218d43c94d8d`), las métricas del modelo SVM con semilla 42 (MAE: 615.07772, RMSE: 1223.44315, $R^2$: -0.06958) y los resultados agregados de las 5 semillas documentadas.
 
 ---
 
