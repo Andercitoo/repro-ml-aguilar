@@ -1,5 +1,5 @@
 """Zona raw -> zona processed.
- 
+
 Run:  PYTHONHASHSEED=0 python -m src.prepare_data
 """
 import hashlib
@@ -15,18 +15,41 @@ def md5(path) -> str:
 
 
 def main() -> None:
-    df = pd.read_csv(RAW)
+    df = pd.read_csv(RAW)                       # la zona raw solo se LEE
     n0 = len(df)
     df.columns = df.columns.str.strip()
     df = df.drop_duplicates()
     if CODIGOS_FALTANTES:
         df = df.replace(CODIGOS_FALTANTES, np.nan)
-    df = df.dropna(subset=[TARGET])
+    df = df.dropna(subset=[TARGET])             # sin objetivo no se puede entrenar
 
-    # ---- Limpieza propia del dataset del grupo (SentryBox) ----
-    df = df[df[TARGET] > 0]
-    if "tiene_trabajadores_pagados" in df.columns:
-        df = df.drop(columns=["tiene_trabajadores_pagados"])
+    # ---- Limpieza propia del dataset del grupo ----
+
+    # Verificar que todas las variables configuradas existan
+    from src.config import COLS_CAT, COLS_NUM
+
+    columnas_requeridas = [TARGET] + COLS_NUM + COLS_CAT
+
+    columnas_faltantes = [
+        col for col in columnas_requeridas
+        if col not in df.columns
+    ]
+
+    if columnas_faltantes:
+        raise ValueError(
+            f"Faltan columnas necesarias: {columnas_faltantes}"
+        )
+
+    # Verificar que la variable objetivo sea numérica
+    if not pd.api.types.is_numeric_dtype(df[TARGET]):
+        raise TypeError(
+            f"La variable objetivo {TARGET} debe ser numérica."
+        )
+
+    # Se conserva el valor faltante de nivel_educativo.
+    # Su imputación se realizará dentro del Pipeline
+    # durante la validación cruzada.
+
     # --------------------------------------------------------------
 
     PROCESSED.parent.mkdir(parents=True, exist_ok=True)

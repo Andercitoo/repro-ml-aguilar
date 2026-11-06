@@ -7,12 +7,12 @@
 - **Licencia:** Datos abiertos del Estado peruano para fines académicos y de investigación estadística.
 
 ## 2. Integridad de los Archivos
-- **Archivo Raw:** `data/raw/sentrybox_enaho2025.csv`
+- **Archivo raw:** `data/raw/sentrybox_enaho2025.csv`
   - Filas originales: 4765
+  - MD5: `79cb9c9fcccd760795c3a28fdc8b35e3`
+- **Archivo processed:** `data/processed/dataset.csv`
+  - Filas procesadas: 4765
   - MD5: `5caa212fdfd858bb9a4f218d43c94d8d`
-- **Archivo Processed:** `data/processed/dataset.csv`
-  - Filas procesadas: 4761
-  - MD5: `223bd97c1ae772fc3e54c01f11d4dd57`
 
 ## 3. Diccionario de Variables del Modelo
 - `ganancia_neta_mes` (Objetivo): Ganancia neta en soles del mes anterior (P530A).
@@ -33,6 +33,5 @@
 
 ## 4. Transformaciones Aplicadas
 - Filtrado a comerciantes minoristas (CIIU 4700-4799) independientes y empleadores.
-- Reemplazo de códigos de omisión (99, 9999, 999999) por valores nulos (NaN).
 - Eliminación de registros duplicados y validación de ganancia neta > 0.
 - Exclusión de `tiene_trabajadores_pagados` por colinealidad perfecta (r = 1.0) con `es_empleador`.

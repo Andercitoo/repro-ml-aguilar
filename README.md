@@ -44,7 +44,7 @@ python -m src.run_seeds
 
 ```bash
 # 1. Clonar el repositorio y entrar
-git clone [https://github.com/Andercitoo/repro-ml-aguilar.git](https://github.com/Andercitoo/repro-ml-aguilar.git)
+git clone https://github.com/Andercitoo/repro-ml-aguilar.git
 cd repro-ml-aguilar
 
 # 2. Crear y activar el entorno virtual
@@ -70,7 +70,7 @@ PYTHONHASHSEED=0 python -m src.run_seeds
 
 Al ejecutar `python -m src.train --seed 42`, la salida JSON idéntica es:
 ```json
-{"seed": 42, "modelo": "svm", "data_md5": "223bd97c1ae772fc3e54c01f11d4dd57", "mae_mean": 613.7818, "mae_sd": 42.94809, "rmse_mean": 1171.48886, "rmse_sd": 99.35636, "r2_mean": -0.07433, "r2_sd": 0.0235}
+{"seed": 42, "modelo": "svm", "data_md5": "5caa212fdfd858bb9a4f218d43c94d8d", "mae_mean": 615.07772, "mae_sd": 26.09832, "rmse_mean": 1223.44315, "rmse_sd": 101.10417, "r2_mean": -0.06958, "r2_sd": 0.01302}
 ```
 
 ---
@@ -80,20 +80,20 @@ Al ejecutar `python -m src.train --seed 42`, la salida JSON idéntica es:
 ### Tabla Resumen (`results/results_summary.csv`):
 | seed | modelo | mae_mean | mae_sd | rmse_mean | rmse_sd | r2_mean | r2_sd |
 |---|---|---|---|---|---|---|---|
-| 0 | baseline | 628.91910 | 63.27469 | 1177.99828 | 183.91418 | -0.10172 | 0.01794 |
-| 1 | baseline | 629.02316 | 38.78671 | 1184.39055 | 122.78465 | -0.10399 | 0.03003 |
-| 2 | baseline | 628.92790 | 24.57879 | 1186.94848 | 84.52870 | -0.09998 | 0.01054 |
-| 3 | baseline | 629.11193 | 24.96834 | 1186.25072 | 95.18270 | -0.10039 | 0.01065 |
-| 42 | baseline | 629.06988 | 42.52786 | 1186.13904 | 98.44387 | -0.10166 | 0.02515 |
-| 0 | svm | 613.56187 | 62.35232 | 1163.20112 | 184.57016 | -0.07354 | 0.01850 |
-| 1 | svm | 613.58744 | 38.50991 | 1169.42808 | 123.05214 | -0.07592 | 0.02631 |
-| 2 | svm | 613.52692 | 24.40085 | 1172.35994 | 84.76942 | -0.07297 | 0.00987 |
-| 3 | svm | 613.57918 | 24.86162 | 1171.62440 | 95.37570 | -0.07326 | 0.00762 |
-| 42 | svm | 613.78180 | 42.94809 | 1171.48886 | 99.35636 | -0.07433 | 0.02350 |
+| 0 | baseline | 631.05946 | 67.27055 | 1232.92013 | 162.79982 | -0.09580 | 0.02177 |
+| 1 | baseline | 631.10871 | 40.24476 | 1229.40888 | 193.37736 | -0.10137 | 0.03142 |
+| 2 | baseline | 630.98995 | 47.19475 | 1229.18997 | 196.00026 | -0.09816 | 0.01257 |
+| 3 | baseline | 630.90287 | 49.57325 | 1230.49517 | 184.42108 | -0.09767 | 0.00586 |
+| 42 | baseline | 631.32751 | 26.57029 | 1238.08550 | 100.72041 | -0.09552 | 0.01312 |
+| 0 | svm | 614.77682 | 66.79753 | 1218.20587 | 162.45596 | -0.06951 | 0.02221 |
+| 1 | svm | 614.85007 | 40.20284 | 1214.26441 | 194.41477 | -0.07337 | 0.02422 |
+| 2 | svm | 614.73713 | 47.48369 | 1214.11241 | 196.46274 | -0.07067 | 0.01020 |
+| 3 | svm | 614.71305 | 49.40486 | 1215.33266 | 184.94065 | -0.07010 | 0.00419 |
+| 42 | svm | 615.07772 | 26.09832 | 1223.44315 | 101.10417 | -0.06958 | 0.01302 |
 
-### Métricas Principales (Media ± DE muestral, ddof=1):
-- **Baseline (mediana):** MAE = $629.0104 \pm 0.0854$ S/
-- **SVM (SVR):** MAE = $613.6074 \pm 0.1002$ S/
+### Métricas Principales (Media $\pm$ DE muestral, ddof=1):
+- **Baseline (mediana):** MAE = $631.0777 \pm 0.1597$ S/
+- **SVM (SVR):** MAE = $614.8310 \pm 0.1474$ S/
 
 ---
 
@@ -131,7 +131,7 @@ Captura de las 10 corridas registradas en MLflow:
    Mide la estabilidad y sensibilidad del desempeño del algoritmo frente a fluctuaciones en el particionamiento aleatorio de los folds durante la validación cruzada. NO mide el error del modelo ante datos futuros no vistos ni la variabilidad intrínseca de los ingresos mensuales de los microcomerciantes en la población peruana.
 
 4. **¿Su modelo supera al baseline en las 5 semillas? ¿La diferencia es mayor que la desviación estándar? ¿Qué concluye?**  
-   Sí, SVR supera al baseline en las 5 semillas, logrando un MAE medio de S/ 613.6074 frente a S/ 629.0104. La reducción de error (S/ 15.40) es sustancialmente mayor que la desviación estándar entre semillas (S/ 0.10). Se concluye que la superioridad del modelo sobre el predictor ingenuo es estadísticamente consistente y robusta ante el remuestreo.
+   Sí, SVR supera al baseline en las 5 semillas, logrando un MAE medio de S/ 614.8310 frente a S/ 631.0777. La reducción de error (S/ 16.25) es sustancialmente mayor que la desviación estándar entre semillas (S/ 0.15 y S/ 0.16). Se concluye que la superioridad del modelo sobre el predictor ingenuo es estadísticamente consistente y robusta ante el remuestreo.
 
 5. **¿Por qué el archivo de la zona raw no se modifica nunca y para qué sirve su MD5?**  
    La zona raw representa la fuente primaria inalterable de verdad. Modificarla destruye la trazabilidad y reproducibilidad del estudio. El hash MD5 actúa como una firma digital criptográfica que permite a cualquier auditor o evaluador verificar que está procesando el archivo idéntico original sin alteraciones accidentales introducidas por herramientas externas como Excel.

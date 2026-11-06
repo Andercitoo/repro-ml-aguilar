@@ -33,7 +33,7 @@ COLS_CAT = [
     "mes_encuesta"
 ]
 
-CODIGOS_FALTANTES = [99, 9999, 999999]
+CODIGOS_FALTANTES = []
 
 # Algoritmo asignado: Integrante 5 -> SVM (SVR en regresión)
 MODELO = "svm"
